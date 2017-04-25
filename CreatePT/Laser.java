@@ -17,8 +17,8 @@ public class Laser extends Actor
         move(5);
         if(getOneIntersectingObject(Robot.class) != null) {
             removeRobot(Robot.class);
-            removeObject();
             ((StarGalaxy)getWorld()).setrobotCounter((((StarGalaxy)getWorld()).getrobotCounter())-1);
+            getWorld().removeObject(this);
         }
     }
     
