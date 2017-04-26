@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.lang.Math;
 
 /**
  * Robot-Destroyer is a simple spaceship-controlled game. The objective is to destroy as many robots 
@@ -9,9 +10,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class StarGalaxy extends World
 {
-    int xBound = 900;
-    int yBound = 700;
-    
     int rfPowerupCounter = 0;
     int radPowerupCounter = 0;
     int shotPowerupCounter = 0;
@@ -34,7 +32,7 @@ public class StarGalaxy extends World
         starship = new Starship();
         addObject(starship, getWidth()/2, getHeight()/2);
         counter = new Counter();
-        addObject(counter, 10, 10);
+        addObject(counter, 60, 20);
     }
     
     
@@ -67,7 +65,10 @@ public class StarGalaxy extends World
         int x = Greenfoot.getRandomNumber(getWidth());
         int y = Greenfoot.getRandomNumber(getHeight());
         Robot robot = new Robot();
-        if(x != starship.getStarshipX() && y != starship.getStarshipY()) {
+        
+        
+        int distance = (int)Math.sqrt(Math.pow((x-starship.getStarshipX()),2)+Math.pow((y-starship.getStarshipY()),2));
+        if(distance > 10) {
             addObject(robot, x, y);
         } else {
             createRobot();
@@ -75,15 +76,15 @@ public class StarGalaxy extends World
     }
     public void createRapidFirePowerup() {
         RapidFirePowerup rfPowerup = new RapidFirePowerup();
-        addObject(rfPowerup, Greenfoot.getRandomNumber(xBound), Greenfoot.getRandomNumber(yBound));
+        addObject(rfPowerup, Greenfoot.getRandomNumber(getWidth()), Greenfoot.getRandomNumber(getHeight()));
     }
     public void createRadiationPowerup() {
         RadiationPowerup radPowerup = new RadiationPowerup();
-        addObject(radPowerup, Greenfoot.getRandomNumber(xBound), Greenfoot.getRandomNumber(yBound));
+        addObject(radPowerup, Greenfoot.getRandomNumber(getWidth()), Greenfoot.getRandomNumber(getHeight()));
     }
     public void createShotgunPowerup() {
         ShotgunPowerup shotPowerup = new ShotgunPowerup();
-        addObject(shotPowerup, Greenfoot.getRandomNumber(xBound), Greenfoot.getRandomNumber(yBound));
+        addObject(shotPowerup, Greenfoot.getRandomNumber(getWidth()), Greenfoot.getRandomNumber(getHeight()));
     }
 
     
@@ -115,11 +116,5 @@ public class StarGalaxy extends World
     }
     public Starship getStarship() {
         return starship;
-    }
-    public int getxBound() {
-        return xBound;
-    }
-    public int getyBound() {
-        return yBound;
     }
 }

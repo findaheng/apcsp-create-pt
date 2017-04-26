@@ -8,6 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Counter extends Actor
 {
+    int score = 0;
+    
     /**
      * Act - do whatever the Counter wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -15,6 +17,15 @@ public class Counter extends Actor
     
     public void act() 
     {
-        //SetImage(new GreenfootImage("Score: "
+        setImage(new GreenfootImage("Score: "+score, 24, Color.WHITE, Color.BLACK));
     }    
+    
+    
+    //get and set score methods
+    public int getScore() {
+        return score;
+    }
+    public void setScore(int x) {
+        score = x;
+    }
 }

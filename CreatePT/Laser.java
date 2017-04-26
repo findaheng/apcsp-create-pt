@@ -8,7 +8,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Laser extends Actor
 {
-    int score = 0;
     
     /**
      * Act - do whatever the Laser wants to do. This method is called whenever
@@ -18,7 +17,9 @@ public class Laser extends Actor
     {
         move(5);
         if(getOneIntersectingObject(Robot.class) != null) {
-            score++;
+            Counter c = getWorld().getObjects(Counter.class).get(0);
+            
+            c.setScore(c.getScore()+1);
             removeRobot(Robot.class);
             ((StarGalaxy)getWorld()).setrobotCounter((((StarGalaxy)getWorld()).getrobotCounter())-1);
             move(20);
@@ -26,8 +27,11 @@ public class Laser extends Actor
         }
     }
     
+    
+    //remove robot method
     public void removeRobot(java.lang.Class x) {
         getWorld().removeObject(getOneIntersectingObject(x));
     }
+    
 }    
 
