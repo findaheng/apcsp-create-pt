@@ -8,6 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Laser extends Actor
 {
+    int score = 0;
+    
     /**
      * Act - do whatever the Laser wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -16,8 +18,10 @@ public class Laser extends Actor
     {
         move(5);
         if(getOneIntersectingObject(Robot.class) != null) {
+            score++;
             removeRobot(Robot.class);
             ((StarGalaxy)getWorld()).setrobotCounter((((StarGalaxy)getWorld()).getrobotCounter())-1);
+            move(20);
             getWorld().removeObject(this);
         }
     }

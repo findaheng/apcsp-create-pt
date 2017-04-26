@@ -11,10 +11,10 @@ public class Starship extends Actor
     int counter = 0;
     
     int angle = 0;
-    int rotate = 4;
+    int rotate = 6;
     
     int foSpeed = 4;
-    int revSpeed = -1;
+    int revSpeed = -2;
     int gunSpeed = 18;
     
     int setTimer = 300;

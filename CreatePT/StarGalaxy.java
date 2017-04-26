@@ -30,7 +30,7 @@ public class StarGalaxy extends World
     public StarGalaxy()
     {    
         super(900,700, 1); 
-        setPaintOrder(Starship.class, Laser.class);
+        setPaintOrder(GameOver.class, Starship.class, Laser.class);
         starship = new Starship();
         addObject(starship, getWidth()/2, getHeight()/2);
         counter = new Counter();
@@ -64,8 +64,14 @@ public class StarGalaxy extends World
     
     //create methods
     public void createRobot() {   
+        int x = Greenfoot.getRandomNumber(getWidth());
+        int y = Greenfoot.getRandomNumber(getHeight());
         Robot robot = new Robot();
-        addObject(robot, Greenfoot.getRandomNumber(xBound), Greenfoot.getRandomNumber(yBound));
+        if(x != starship.getStarshipX() && y != starship.getStarshipY()) {
+            addObject(robot, x, y);
+        } else {
+            createRobot();
+        }
     }
     public void createRapidFirePowerup() {
         RapidFirePowerup rfPowerup = new RapidFirePowerup();
